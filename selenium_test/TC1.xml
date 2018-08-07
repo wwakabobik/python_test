@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<TestCase_Params>
+    <ConverterSetup>
+	    <ConverterSetup:currencyIn>RUB</ConverterSetup:currencyIn>
+        <ConverterSetup:currencyOut>USD</ConverterSetup:currencyOut>
+        <ConverterSetup:source></ConverterSetup:source>
+        <ConverterSetup:recieve></ConverterSetup:recieve>
+        <ConverterSetup:exchange></ConverterSetup:exchange>
+        <ConverterSetup:package></ConverterSetup:package>
+        <ConverterSetup:time></ConverterSetup:time>
+	</ConverterSetup>
+    <Amount>
+        <Amount:amount>450</Amount:amount>
+    </Amount>
+    <Result>
+        <Result:amount>6,94</Result:amount>
+        <Result:currency>USD</Result:currency>
+    </Result>
+</TestCase_Params>

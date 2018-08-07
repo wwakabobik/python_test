@@ -1,6 +1,7 @@
 # this file contains setup procedures and globals (i.g. browser environment)
 
 import pytest
+import sys
 from selenium import webdriver
 
 serviceDelay = 100
@@ -12,30 +13,35 @@ def pytest_addoption(parser):
 
 @pytest.fixture(scope="module", autouse=True)
 def driver(request):
-    browser = request.config.getoption("--driver")
-    if browser == 'chrome':
-        browser = webdriver.Chrome()
-        browser.get("about:blank")
-        pageWait(browser)
-        browser.maximize_window()
-        return browser
-    else:
-        print 'only chrome is supported at the moment'
+    #browser = request.config.getoption("--driver")
+    if "--driver" in request:
+        if "--driver=chrome" in request:
+            driver = webdriver.Chrome()
+        elif "--driver=firefox" in request:
+            driver = webdriver.Firefox()
+            return driver
+        else:
+            print('only chrome and firefox is supported at the moment')
+            sys.exit("-1")
+    driver.get("about:blank")
+    pageWait(driver)
+    driver.maximize_window()
+    return driver
         
 @pytest.fixture(scope="module")
 def url(request):
    return request.config.getoption("--url")
    
-def serviceWait(browser)
+def serviceWait(browser):
     browser.implicitly_wait(serviceDelay)
     
-def pageWait(browser)
+def pageWait(browser):
     browser.implicitly_wait(pageDelay)
     
-def selfTest(browser)
-    driver.get('http://www.sberbank.ru/ru/quotes/converter')
+def selfTest(browser, targetPage, checkString):
+    browser.get(targetPage)
     pageWait(browser)
-    assert 'Калькулятор иностранных валют' in driver.title
+    assert checkString in browser.title
     
-def closeDriver(browser)
+def closeDriver(browser):
     browser.quit()

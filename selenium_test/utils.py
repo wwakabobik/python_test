@@ -1,69 +1,59 @@
 # this file contains different utils and functions to support testing
 
-from BeautifulSoup import BeautifulStoneSoup as Soup
+from bs4 import BeautifulSoup as Soup
 
 # setup
 def getFileName(TCNumber):
-	return String("TC" + String(TCNumber) + ".xml")
+    return str("TC" + str(TCNumber) + ".xml")
 
-def getData_currencyIN(TCNumber):
+# common	
+def getTags(TCNumber, TagName):
     filename = getFileName(TCNumber)
-	soup = Soup(open(filename))
-	for tag in soup.findAll('ConverterSetup'):
-    return tag.find('ConverterSetup:currencyIN').text
+    infile = open(filename,"r")
+    contents = infile.read()
+    soup = Soup(contents,'xml')
+    tags = soup.find(TagName)
+    return tags
+
+#get fields
+def getData_currencyIn(TCNumber):
+    titles=getTags(TCNumber, "ConverterSetup")
+    return titles.find("currencyIn").get_text()
 
 def getData_currencyOut(TCNumber):
-    filename = getFileName(TCNumber)
-	soup = Soup(open(filename))
-	for tag in soup.findAll('ConverterSetup'):
-    return tag.find('ConverterSetup:currencyOut').text
-	
+    titles=getTags(TCNumber, "ConverterSetup")
+    return titles.find("currencyOut").get_text()
+    
 def getData_source(TCNumber):
-    filename = getFileName(TCNumber)
-	soup = Soup(open(filename))
-	for tag in soup.findAll('ConverterSetup'):
-    return tag.find('ConverterSetup:source').text
-	
+    titles=getTags(TCNumber, "ConverterSetup")
+    return titles.find("source").get_text()
+    
 def getData_recieve(TCNumber):
-    filename = getFileName(TCNumber)
-	soup = Soup(open(filename))
-	for tag in soup.findAll('ConverterSetup'):
-    return tag.find('ConverterSetup:recieve').text
-	
+    titles=getTags(TCNumber, "ConverterSetup")
+    return titles.find("recieve").get_text()
+    
 def getData_exchange(TCNumber):
-    filename = getFileName(TCNumber)
-	soup = Soup(open(filename))
-	for tag in soup.findAll('ConverterSetup'):
-    return tag.find('ConverterSetup:exchange').text
-	
+    titles=getTags(TCNumber, "ConverterSetup")
+    return titles.find("exchange").get_text()
+    
 def getData_package(TCNumber):
-    filename = getFileName(TCNumber)
-	soup = Soup(open(filename))
-	for tag in soup.findAll('ConverterSetup'):
-    return tag.find('ConverterSetup:package').text
-	
+    titles=getTags(TCNumber, "ConverterSetup")
+    return titles.find("package").get_text()
+    
 def getData_time(TCNumber):
-    filename = getFileName(TCNumber)
-	soup = Soup(open(filename))
-	for tag in soup.findAll('ConverterSetup'):
-    return tag.find('ConverterSetup:time').text
+    titles=getTags(TCNumber, "ConverterSetup")
+    return titles.find("time").get_text()
 
 # input
 def getData_Amount(TCNumber):
-    filename = getFileName(TCNumber)
-	soup = Soup(open(filename))
-	for tag in soup.findAll('Amount'):
-    return tag.find('Amount:amount').text
-	
+    titles=getTags(TCNumber, "Amount")
+    return titles.find("amount").get_text()
+    
 # result
 def getData_ResultAmount(TCNumber):
-    filename = getFileName(TCNumber)
-	soup = Soup(open(filename))
-	for tag in soup.findAll('Result'):
-    return tag.find('Result:amount').text
-	
+    titles=getTags(TCNumber, "Result")
+    return titles.find("amount").get_text()
+    
 def getData_ResultCurrency(TCNumber):
-    filename = getFileName(TCNumber)
-	soup = Soup(open(filename))
-	for tag in soup.findAll('Result'):
-    return tag.find('Result:currency').text
+    titles=getTags(TCNumber, "Result")
+    return titles.find("currency").get_text()
