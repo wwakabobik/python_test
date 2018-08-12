@@ -93,7 +93,7 @@ def connectToServer(login, password):
     #print(clientsocket.recv(1024)) # commented-out to supress debug output
     clientsocket.send(password)
     #print(clientsocket.recv(1024)) # commented-out to supress debug output
-    reurn
+    return
     
 # get user input
 def userInput():
