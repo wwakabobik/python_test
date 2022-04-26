@@ -2,8 +2,8 @@ This project is to handle and demonstrate ability to test presence of scrollbars
 using Selenium webdriver (using JavaScript calls and/or attributes directly).
 
 ``` bash
-git clone git@github.com:wwakabobik/python_test.git/scroll_test
-cd scroll_test
+git clone git@github.com:wwakabobik/python_test.git
+cd python_test/scroll_test
 python -m venv venv (In cases where you still have Python 2.7 or older installed on your system, your python command might be python3)
 source venv/bin/activate (Linux/Mac) -or- venv\Scripts\activate.bat (Windows CMD)
 pip install -r requirements.txt
