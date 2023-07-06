@@ -1,2 +1,2 @@
-This repository only for python coding / testing demonstration purpurses
+This repository only for python coding / testing demonstration purposes
 There is not so much interesting here...

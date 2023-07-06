@@ -2,7 +2,7 @@ from selenium import webdriver
 import pytest
 
 
-@pytest.fixture(autouse=True, scope='session')
+@pytest.fixture(autouse=True, scope="session")
 def driver():
     my_driver = webdriver.Chrome()
     yield my_driver
