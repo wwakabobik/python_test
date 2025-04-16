@@ -1,0 +1,26 @@
+name: Integration Tests
+
+on:
+  push:
+    branches:
+      - master
+
+  workflow_dispatch:
+
+jobs:
+  integration-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Build container(s)
+      run: |
+        docker compose build
+
+    - name: Run container(s)
+      run: |
+        docker compose up --abort-on-container-exit
